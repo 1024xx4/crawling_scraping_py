@@ -29,3 +29,27 @@ Web page の Hyper link をたどって次々に Web page を Download する作
 ### Scraping（スクレイピング）
 Web page から必要な情報を抜き出す作業。  
 Download した Web page から必要な情報を抜き出す作業。
+
+# Wget による Crawling
+## Wget とは
+**GNU Wget(Wget)**とは、HTTP 通信や、FTP 通信を使用して、Server から File や Contents を Download するための Software(Downloader)。  
+Command line から簡単に使用できる。
+### Wget の特徴
+Crawling 機能がある。複数の File を一度に Download したり、Web page の Link をたどって複数の Contents を Download したりできる。
+
+### Wget でよく使う Option
+Option | 説明
+--- | ---
+-V, -version | Wget の Version を表示する。
+-h, --help | Help を表示する。
+-q, --quit | 進捗状況などを表示しない。
+-O *file*, --output-document=*file* | *file* に保存する。
+-c, --continue | 前回の続きから File の Download を再開する。
+-r, --recursive | Link をたどって再帰的に Download する。
+-l *depth*, --level=*depth* | 再帰的に Download するときに Link をたどる深さを *depth* に制限する。
+-w *seconds*, --wait=*seconds* | 再帰的に Download するときに Download 感覚として *seconds* 秒空ける。
+-np, --no-parent | 再帰的に Download するときに親 Directory を Crawl しない。
+-l *list*, --include *list* | 再帰的に Download するときに *list*に含まれる Directory のみをたどる。
+-N, --timestamping | File が更新されているときのみ Download する。
+-m, --mirror | Mirroring 用の Option を有効化する。
+--restrict-file-names=nocontrol | URL に日本語が含まれる場合に、日本語の File 名で保存する。
