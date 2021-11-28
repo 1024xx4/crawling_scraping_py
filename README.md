@@ -155,3 +155,17 @@ $ cat yakei_kobe.csv | grep -E '^1'
 yakei_kobe.csv file 内で「,」に続く５文字の Spot 名がある行に Match
 $cat yakei_kobe.csv | grep -E ',.{5}'
 ```
+
+# Unix command による Crawling と Scraping について
+## 強味
+wget, grep sed などを利用して、手軽に Crawling と Scraping ができる
+## 弱み
+実用上は機能不足
+### Crawling
+たどる Link やその順序の制御
+- Wget では、Directory 単位でしが制御できない。
+- たどる順序の明示的な制御はできない。
+- File を Download した時に何らかの処理も行なうことができない。
+### Scraping
+行指向になっていて、行単位になっていない Data を扱うのは苦手。
+
