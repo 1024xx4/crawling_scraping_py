@@ -169,3 +169,22 @@ wget, grep sed などを利用して、手軽に Crawling と Scraping ができ
 ### Scraping
 行指向になっていて、行単位になっていない Data を扱うのは苦手。
 
+# Python で行なう Crawling & Scraping
+## Merit
+### 言語自体の特性
+- 読みやすく、書きやすい。Program は他人に読まれることになるため、読みやすさは重要。
+- 豊富な標準 Library が付属していて Install 後すぐに使用可能。
+- 非同期処理の為の Framework や標準 Library があり手軽に使用可能。
+### 強力な Third party library の存在
+- lxml, Beautiful Soup という有名な Scraping library がある。
+- Scrapy という強力な Crawling & Scraping Framework がある。
+### Scraping 後のよりとの親和性
+Crawling, Scraping で Data を取得した後の Data 分析に強力な Library がある。
+NumPy, SciPy という数値計算や科学技術計算の Library を Base にした Data分析用がある。
+
+Library | 説明
+--- | ---
+pandas | NumPy を Base として Data の前処理（欠損値の処理・正規化など）や集計を簡単に行なえる。
+matplotlib | 数値 Data を Graph で可視化
+
+R と同様の分析が行なえる。
