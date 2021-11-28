@@ -53,3 +53,105 @@ Option | 説明
 -N, --timestamping | File が更新されているときのみ Download する。
 -m, --mirror | Mirroring 用の Option を有効化する。
 --restrict-file-names=nocontrol | URL に日本語が含まれる場合に、日本語の File 名で保存する。
+
+# Scraping に役立つ Unix Command
+HTML file から目的の Data を抜き出すために
+- Unix command
+- 正規表現
+が必要。
+
+## Unix command
+- 一つ一つは単純な機能しかないが、複数を組み合わせることで複雑な Text 処理が行なえる。
+- Scraping だけではなく、Data 集計などでも役立つ。
+
+## 標準 Stream
+標準入力、標準出力、標準 Error 出力の３つの総称。
+### 標準入力
+Command が入力を受け取る元
+### 標準出力
+結果を出力する先
+### 標準 Error 出力
+Error などの補足情報を出力する先
+
+## Redirect
+標準 Stream を Console 画面ではなく、File から入力したり File に出力すること。
+
+## Pipe(パイプ)
+ある Command の標準出力を他の Command の標準入力に渡すこと。
+
+## Text 処理のための Unix Command 
+### cat
+引数で与えた File を出力する
+```
+yakei_kobe.csv を出力する
+$ cat yakei_kobe.csv
+```
+
+### grep
+- 引数で指定した文字列を含む行を抜き出す
+- 引数で指定した正規表現に Match する行を抜き出す。
+```
+yakei_kobe.csv から「六甲」という文字列を含む行のみ出力する
+$ cat yakei_kobe.csv | grep 六甲
+```
+
+### cut
+特定の文字で区切られた Text の一部の列を抜き出す。
+
+Option | 説明
+--- | ---
+-d | 区切り文字の指定
+-f | 列番号の指定（複数指定可能）
+
+```
+yakei_kobe.csv から 「,（Comma）」で区切った１，２列目の Data を出力する。
+$ cat yakei_kobe.csv | cut -d , -f 1,2
+```
+### sed
+特定の条件に Match する行を置き換えたり、削除したりできる。引数に  
+**'s/検索する正規表現/置換する文字列/Option'**  
+で正規表現に Match する箇所を置換する文字列に置き換えて出力する。
+
+末尾の Option | 説明
+--- | ---
+g | １行に検索する正規表現が複数回出現する場合でもすべて置換する。
+
+```
+yakei_kobe.csv file の「,」を Space に置き換えて出力
+$ cat yakei_kobe.csv | sed '/s/,/ /g'
+```
+
+## 正規表現（Regular Expression）
+特定の Pattern の文字列を表すための文字列表現。Pattern に Match する文字列を検索するために使用する。
+Pattern を表すために Meta 文字と呼ばれる記号を使う。
+
+### 正規表現の規格
+規格 | 説明
+--- | ---
+POSIX の基本正規表現 （BRE: Basic Regular Expressions） | grep や sed などの Unix command で標準て使用できる。
+POSIX の拡張正規表現（ERE: Extended Regular Expressions） | BRE よりも表現力が高い。-E option をつけることで Unix command でも利用可能。
+Perl の正規表現 | ERE よりも強力で、様々な Pattern を表現できる。Python の正規表現もほぼ同じ正規表現になる。
+
+### 正規表現の Meta 文字
+Meta 文字 | 説明
+--- | ---
+. | 任意の１文字に Match
+[] | []で囲まれた文字のいずれかに１文字に Match
+[]内の - | - で文字の範囲を表す。
+[]内の ^ | ^ を最初につけることで否定を表す。
+^ | 行の先頭に Match
+$ | 行の末尾に Match
+* | 直前の Pattern を０回以上繰り返す。
++ | 直前の Pattern を１回以上繰り返す。
+? | 直前の Pattern を０回か１回繰り返す。
+{n} | 直前の Pattern をちょうど n 回繰り返す。
+() | ()で囲まれた Pattern を Group 化する。
+ ❘ |で区切られた Pattern のいずれかに Match する
+
+```
+yakei_kobe.csv file 内で行頭に 1 という文字列がある行に Match
+$ cat yakei_kobe.csv | grep -E '^1'
+
+yakei_kobe.csv file 内で「,」に続く５文字の Spot 名がある行に Match
+$cat yakei_kobe.csv | grep -E ',.{5}'
+```
