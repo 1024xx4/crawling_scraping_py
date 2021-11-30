@@ -188,3 +188,39 @@ pandas | NumPy を Base として Data の前処理（欠損値の処理・正�
 matplotlib | 数値 Data を Graph で可視化
 
 R と同様の分析が行なえる。
+
+# Python で Web page を取得する
+Third party library の Requests を使用する。
+## Requests
+HTTP header の追加や Basic 認証などの少し凝ったことを使用としても簡単に使用できる UI が用意されている。
+
+関数 | 対応する HTTP Method
+--- | ---
+get() | GET
+post() | POST
+put() | PUT
+patch() | PATCH
+delete() | DELETE
+head() | HEAD
+options() | OPTIONS
+### Response Object(requests.get で得られる Object)
+- .text で str 型の文字列を得らえる。
+- .content が .encoding で Decode されたものが出力される。
+- .text で文字化けする場合、.encoding='encode' のように上書きすると指定した Encoding で Decode されて出力さる。
+- Response body が圧縮されていても自動的に展開されるため、特に気にする必要はない。
+
+## HTTP Request と Response
+次の４つの要素から構成される。
+- 開始行
+- Header（省略可能）
+- 空行（Header の終わりを表す）
+- Body（省略可能）
+
+実際に取得したい HTML は Response body に格納されていて、Response header がその補足情報となる。
+
+### Session object
+複数の Page を Crawl する倍に効果的
+- HTTP header や Basic 認証などの設定を複数の Request で使いまわる。
+- Cookie も自動的に引き継がれる。
+- 同じ Web site に複数回 Request を送る時に TCP Connection の確率処理を省略でき、Performance 向上が期待できる。
+- 相手の Server 側の負荷も軽減できる。
