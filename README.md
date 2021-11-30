@@ -224,3 +224,33 @@ options() | OPTIONS
 - Cookie も自動的に引き継がれる。
 - 同じ Web site に複数回 Request を送る時に TCP Connection の確率処理を省略でき、Performance 向上が期待できる。
 - 相手の Server 側の負荷も軽減できる。
+
+## 文字 Code
+Server から受け取った HTTP response に含まれる Byte 列から元の文字列を復元するには**どの Encoding で Encode されたか**を知る必要がある。  
+### 実際の Web site
+- 管理者によって正しく指定されていない。
+- 間違っている Encoding が指定されている。
+
+ことがある。その場合、誤った Encoding で Decode すると文字化けを起こす。  
+UTF-8 で Decode するのも１つの手だが日本語を含む多様な Site を Crawl する場合は、複数の Encoding が混在している可能性がある。
+
+## Web page の Encoding を取得・推定する方法
+No | 方法 | 補足
+--- | --- | ---
+1 | HTTP response の Content-Type header の charset で指定された Encoding を取得する。 | 正しくなかったり、charset が指定されていなかったりすることがある。
+2 | HTTP response body の Byte列の特徴から Encoding を推定する。 | 推定に使用する Response body が長いほど精度よく推定できるが、その分、処理時間が長くなる。
+3 | HTML の meta tag で指定された Encoding を取得する。 | １が正しく指定されている Site では、meta tag が指定されていないことがある。
+
+## HTTP header から Encoding を取得する
+Content-type header に charset が指定されていないと `r.encoding == 'ISO-8859-1'` となること。  
+ISO-8859-1 は、ラテン文字のための Encoding なので、日本語の Web site を Decode すると文字化けする。
+
+### ISO-8859-1 の対策
+- UTF-8 とみなす。
+- 他の方法を使用する。
+
+## Response body の Byte 列から Encoding を推定する
+Requests の Response object の apparent_encoding 属性で推定された Encoding が取得できるのでそれを利用する。
+
+## meta tag から Encoding を取得する
+meta tag の Encoding は Requests の機能では取得できないため正規表現を使って Encoding を取得する。
