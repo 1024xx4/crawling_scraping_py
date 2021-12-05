@@ -302,5 +302,26 @@ XPath に比べて簡潔に書ける。CSS Selector でざっくり抽出して�
 Browser の開発者 Tool で取得できる Xpath や CSS Selector を確認し、必要に応じて本質的なところだけ抽出したり使用する Selector を変更させながら活用すれば
 Simple かつ変化に強くなる。
 
+# Data の File 保存
+## CSV形式
+CSV（Comma-Separated Values）は、１Record を１行で表し、各行の値を Comma で区切った Text Format。  
+２次元 Data の保存に向いている。
 
+### CSV module の注意点
+```csv.writer``` は、Default で Excel 互換の形式で出力し、Unix 系の OS においても File の改行 Code が CRLF になる。  
+そのため、Unix 系の OS で ```open()```関数で普通に File を開くと、出力時に改行 Code が LF に自動変換されてしまうので、自動変換を抑制する為に ```open()```
+関数で File を開く際は、```newline=''```を指定する。
+
+## CSV / TSV file の Encoding
+Unix 系 OS の Default encoding は、UTF-8。
+Python で File を開いて保存する場合も ```encoding=''``` を指定しないと UTF-8 で保存される。  
+Excel で開くと文字化けするので注意が必要になる。
+
+### Excel における CSV / TSV
+| Encoding         | Encoding の値 | 特徴                                                                   |
+|------------------|-------------|----------------------------------------------------------------------|
+| UTF-8            | 'utf-8'     | Unicode の文字を使用できるが Excel では文字化けする。                                   |
+| UTF-8（BOM 付き）    | 'utf-8-sig' | Unicode の文字を使用できるが macOS 版 Excel では文字化けする                            |
+| UTF-16           | 'utf-16'    | Unicode の文字を使用できるが Comma で区切られた CSV File を Excel で開いたときに列が正しく分割されない。 |
+| Shift_JIS（CP932） | 'cp932'     | Excel で文字化けしないが使用可能な文字が限られる。                                         |
 
