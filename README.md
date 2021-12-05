@@ -325,3 +325,7 @@ Excel で開くと文字化けするので注意が必要になる。
 | UTF-16           | 'utf-16'    | Unicode の文字を使用できるが Comma で区切られた CSV File を Excel で開いたときに列が正しく分割されない。 |
 | Shift_JIS（CP932） | 'cp932'     | Excel で文字化けしないが使用可能な文字が限られる。                                         |
 
+## JSON 形式
+JSON（JavaScript Object Notation）。JavaScript の Object に由来する表記方法を使う Text format.
+- list や dict を組み合わせた複雑な Data 構造を手軽に扱える。
+- 明確な仕様が存在するため、実装による細やかな違いに悩くことがない。
