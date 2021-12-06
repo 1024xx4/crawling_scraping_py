@@ -10,5 +10,5 @@ cities = [
 
 print(json.dumps(cities, ensure_ascii=False, indent=2))
 
-with open('dump/top_cities.json', 'w') as f:
+with open('../dump/top_cities.json', 'w') as f:
     json.dump(cities, f)

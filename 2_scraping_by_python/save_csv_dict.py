@@ -1,5 +1,5 @@
 import csv
-with open('dump/top_cities_dict.csv', 'w', newline='') as f:
+with open('../dump/top_cities_dict.csv', 'w', newline='') as f:
     writer = csv.DictWriter(f, ['rank', 'city', 'population'])
     writer.writeheader()
     writer.writerows([

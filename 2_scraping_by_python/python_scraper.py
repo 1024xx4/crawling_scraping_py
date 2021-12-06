@@ -13,7 +13,7 @@ def main():
     url = 'https://gihyo.jp/dp'
     html = fetch(url)
     books = scrape(html, url)
-    save('dump/books.csv', books)
+    save('../dump/books.csv', books)
 
 
 def fetch(url: str) -> str:
