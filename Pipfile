@@ -8,6 +8,7 @@ requests = "*"
 lxml = "*"
 cssselect = "*"
 beautifulsoup4 = "*"
+pyquery = "*"
 
 [dev-packages]
 
