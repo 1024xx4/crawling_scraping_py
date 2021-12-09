@@ -329,3 +329,33 @@ Excel で開くと文字化けするので注意が必要になる。
 JSON（JavaScript Object Notation）。JavaScript の Object に由来する表記方法を使う Text format.
 - list や dict を組み合わせた複雑な Data 構造を手軽に扱える。
 - 明確な仕様が存在するため、実装による細やかな違いに悩くことがない。
+
+# Python の Scraping 用 Library
+## Beautiful Soup
+- Simple かつわかりやすい API
+- 内部の Parser を目的に応じて切り替えられる。
+### Beautiful Soup で使用できる Parser
+| Parser                   | 指定する Parser 名        | 特徴                      |
+|--------------------------|----------------------|-------------------------|
+| 標準 Library の html.parser | 'html.parser'        | 追加の Library が不要。        |
+| lxml の HTML parser       | 'lxml'               | 高速に処理ができる。              |
+| lxml の XML parser        | 'lxml-xml' または、'xml' | 唯一 XML に対応していて高速に処理できる。 |
+| html5lib                 | 'html5lib'           | HTML5 の仕様通りに Parse できる。 |
+
+## pyquery
+- jQuery と同じような UI で Scrape できる
+- 内部で lxml を使用している
+
+# XML の Scraping
+RSS など XML format が提供されている Web site は、HTML よりも簡単か確実に Parse できるので利用するとよい。  
+<small>近年では Social media の台頭により RSS での提供は減少傾向にはある。</small>
+
+XML からの Scraping は、CSS Selector より XPath の方が書きやすい Case が多い。
+
+## RSS の Format の種類
+RSS は、歴史的な経緯により複数の Format が混在している。
+- RSS 1.0
+- RSS 2.0
+- Atom
+
+RSS 2.0 が１番 Simple で解析しやすい。
