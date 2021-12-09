@@ -9,6 +9,7 @@ lxml = "*"
 cssselect = "*"
 beautifulsoup4 = "*"
 pyquery = "*"
+feedparser = "*"
 
 [dev-packages]
 
