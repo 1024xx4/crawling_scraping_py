@@ -10,6 +10,7 @@ cssselect = "*"
 beautifulsoup4 = "*"
 pyquery = "*"
 feedparser = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
