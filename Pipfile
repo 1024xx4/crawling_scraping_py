@@ -7,6 +7,11 @@ name = "pypi"
 requests = "*"
 lxml = "*"
 cssselect = "*"
+beautifulsoup4 = "*"
+pyquery = "*"
+feedparser = "*"
+psycopg2 = "*"
+pymongo = "*"
 
 [dev-packages]
 

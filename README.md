@@ -329,3 +329,62 @@ Excel で開くと文字化けするので注意が必要になる。
 JSON（JavaScript Object Notation）。JavaScript の Object に由来する表記方法を使う Text format.
 - list や dict を組み合わせた複雑な Data 構造を手軽に扱える。
 - 明確な仕様が存在するため、実装による細やかな違いに悩くことがない。
+
+# Python の Scraping 用 Library
+## Beautiful Soup
+- Simple かつわかりやすい API
+- 内部の Parser を目的に応じて切り替えられる。
+### Beautiful Soup で使用できる Parser
+| Parser                   | 指定する Parser 名        | 特徴                      |
+|--------------------------|----------------------|-------------------------|
+| 標準 Library の html.parser | 'html.parser'        | 追加の Library が不要。        |
+| lxml の HTML parser       | 'lxml'               | 高速に処理ができる。              |
+| lxml の XML parser        | 'lxml-xml' または、'xml' | 唯一 XML に対応していて高速に処理できる。 |
+| html5lib                 | 'html5lib'           | HTML5 の仕様通りに Parse できる。 |
+
+## pyquery
+- jQuery と同じような UI で Scrape できる
+- 内部で lxml を使用している
+
+# XML の Scraping
+RSS など XML format が提供されている Web site は、HTML よりも簡単か確実に Parse できるので利用するとよい。  
+<small>近年では Social media の台頭により RSS での提供は減少傾向にはある。</small>
+
+XML からの Scraping は、CSS Selector より XPath の方が書きやすい Case が多い。
+
+## RSS の Format の種類
+RSS は、歴史的な経緯により複数の Format が混在している。
+- RSS 1.0
+- RSS 2.0
+- Atom
+
+RSS 2.0 が１番 Simple で解析しやすい。
+
+# Database に保存する
+単純に File に保存するのに比べて、複数 Process から読み書きしやすく、Data の重複を防ぎやすくなる。後の行程で分析に利用する際、条件に合う１部
+の Data だけ取り出すのも簡単。
+
+## Relational Database
+- Relational Model, Transaction により Data の整合性を保つ。
+- 標準化された SQL 文によって柔軟に Data を Query できる。
+
+### SQLite
+- 手軽に使える。
+- File の書き込みに時間がかかる。少量の Data なら問題ないが、Crawl して取得した大量の Data を断続的に書き込むと、Bottle neck になりえる。
+- ある Program が File に書き込んでいる間は、他の Program からは同じ File に書き込めないように Lock されるので、複数 Program からの同時
+書き込みにも向いていない。
+
+## NoSQL
+- Relational Database 以外の Database の総称。
+- 整合性を弱める代わりに Scalability や読み書きの性能が高い。
+- Relational Database が向かない領域で広がっている。
+
+### MongoDB
+- NoSQL の一種。Document 型と呼ばれる Database。
+- Open Software
+- 柔軟な Data 構造と高い書き込み性能、使いやすさが特徴。
+- １つの Database が複数の Collection を持ち、１つの Collection は複数の Document を持つ。
+- Document は、BSON（JSON の Binary 版の形式）で扱われ、Python における list, dict のような複雑な Data 構造を格納できる。
+- 事前に Data 構造を定義する必要がなく、Document 毎に異なる構造を持つことができるので Page によって掲載される Data 項目が異なる場合に役立つ。
+- Relational Database に比べて Data の書き込み性能が高い。
+ 

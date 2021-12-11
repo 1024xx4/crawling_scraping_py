@@ -1,6 +1,6 @@
 import csv
 
-with open('dump/top_cities_2.csv', 'w', newline='') as f:
+with open('../dump/top_cities_2.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(['rank', 'city', 'population'])
     writer.writerows([
