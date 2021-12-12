@@ -388,3 +388,39 @@ RSS 2.0 が１番 Simple で解析しやすい。
 - 事前に Data 構造を定義する必要がなく、Document 毎に異なる構造を持つことができるので Page によって掲載される Data 項目が異なる場合に役立つ。
 - Relational Database に比べて Data の書き込み性能が高い。
  
+# Crawler と URL
+## Permalink
+１つの Contents に対応し、時間が経っても対応する Contents が変わらない URL。
+
+### Permalink を持つ Website
+- 検索 Engin が Contents を認識しやすい。
+- SNS に投稿しやすい。  
+<small>※ 総じて SEO（検索 Engin 最適化）に強くなる。</small>
+
+Permalink を利用する Web site には Link が一覧になっている Page が存在することが多い。  
+  <small>※ 一覧 page と詳細 page の組み合わせで構成されている Pattern</small> 
+
+**例外**
+Ajax 実装で Link を Click したときに URL が変わらず Contents だけが変わる Siteは、一覧 Page のみの Pattern 、となる。
+
+### 再実行を考慮した設計
+- Crawl して取得した Data を Database に保存するときは、Data を一意に識別する Key について考える必要がある。
+- 複数回、Crawl した時に取得した Contents が重複しないようにする。
+- Data に一意の識別 Key を与え  
+  - 新規 Data => 追加
+  - 既存 Data => 最新の状態に更新
+
+  となるようにする。
+
+#### Key 候補
+Crawl 対象の Web page が Contents を識別するために利用している id や Code 箇所などを URL から抽出するとよい。
+
+### Database 設計
+- 識別 Key を格納する Field に Unique 制約を設定して Data の一意正を担保する。
+- Primary key は上記の識別 Key とは別に、Surrogate key と呼ばれる Unique な値を生成して使用するのがよい。 
+  ※ URL から取得した値は、Web site 側の Renewal などで変更する可能性がある。
+
+##### Surrogate key の例
+- MySQL: AUTO_INCREMENT という属性で設定し、自動的な連番を振らせる。
+- MongoDB: ObjectId と美呼ばれる 12 byte の一意な ID が _id という名前で自動的に設定される。
+- uuid module で UUID を生成して使用する。
