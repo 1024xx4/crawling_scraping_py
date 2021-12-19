@@ -424,3 +424,36 @@ Crawl 対象の Web page が Contents を識別するために利用している
 - MySQL: AUTO_INCREMENT という属性で設定し、自動的な連番を振らせる。
 - MongoDB: ObjectId と美呼ばれる 12 byte の一意な ID が _id という名前で自動的に設定される。
 - uuid module で UUID を生成して使用する。
+
+# 実用のためのノウハウ
+## Crawler の特性
+- 状態を持つ Crawler
+- JavaScript を解釈する Crawler
+- 不特定多数の Web site を対象とする Crawler
+
+### 状態を持つ Crawler
+Login が必要な Website を crawl するには Cookie に対応する Crawler
+
+### JavaScript を解釈する Crawler
+JavaScript で Contents の表示を行なっているような Website を Crawl するため Crawler  
+Web browser を自動操作するための Tool が必要になる。  
+HTML のみを解釈する Crawler に比べて１page あたりの処理に時間がかかり,Memory 消費が増える傾向。
+JavaScript の実行が必要な Page に絞って使うなど工夫が必要。
+
+#### Web browser を自動操作のための Tool
+##### Selenium
+Program から Browser を自動操作する Tool。Python からも利用するための Library も提供あり。
+##### Puppeteer
+Google Chrome を自動操作するための Node.js Library。  
+Google Chrome しか対応していないが **Selenium** に比べて細やかな制御が可能。  
+**Pyppeteer** という Library で Python で利用可能。
+
+##### Chrome & Firefox の Headless mode 
+GUI を使用しないで Browse を実行する Mode. Memory などの Resource 消費も少ない。
+
+### 不特定多数の Web site を対象とする Crawler
+- 特定の Web site だけを対象とする Crawler に比べて難易度が上がる。
+- Page 内から１番主要と思われる文章や画像を取得するといった Page 構造に依存しない仕組みが必要とされることも多い。  
+- Crawl 対象の Page も膨大になるので、同時平行処理による高速化が重要になる。
+- 抽出した Data を Storage に保存する際の書き込み速度にも注意が必要。
+
