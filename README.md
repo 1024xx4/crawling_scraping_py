@@ -457,3 +457,133 @@ GUI を使用しないで Browse を実行する Mode. Memory などの Resource
 - Crawl 対象の Page も膨大になるので、同時平行処理による高速化が重要になる。
 - 抽出した Data を Storage に保存する際の書き込み速度にも注意が必要。
 
+## 取集した Data の利用に関する注意
+### 4.2.1 著作権
+特に Crawler の作成において注意が必要な３つの権利
+
+| 権利    | 説明                              |
+|-------|---------------------------------|
+| 複製権   | 収集した Web page を保存する権利           |
+| 翻案権   | 収集した Web page から新たな著作物を創造する権利   |
+| 公衆送信権 | 収集した Web page を Server から公開する権利 |
+
+上記、行為は基本的に著作権者の許諾が必要。しかし
+- 私的使用の範囲内の複製など、使用目的によっては許諾不要。
+- 情報解析を目的とした複製や検索 Engin service の提供を目的とした複製・翻案・自動公衆送信は2009年の著作権法改正により許諾不要になった。
+
+事項のように細かい条件あり
+- 会員のみが閲覧可能な Site の Crawl には著作権者の許諾が必要。
+- robot.xtx や robot meta tag で拒否されている page は crawl しない。
+- Crawl した後に拒否されたことがわかった場合は保存済みの著作物を消去する。
+- 検索結果では元の Web page に link をする。
+- 検索結果として表示する著作物は必要と認められる限度内。
+- 違法 Contents であることを知った場合は公衆送信をやめる。
+
+### 4.2.2 利用規約と個人情報
+#### 利用規約
+Web site で利用規約に crawling が明示的に禁止されている場合があるので確認が必要。
+
+#### 個人情報
+- たとえ Web site に公開されている情報でも個人情報を収集する場合は、基本的には利用目的を本人い通知し、利用の許諾を得る必要あり。
+- EU 市民の個人情報を収集する場合は、2018年５月に施行された GDPR に従い取り扱わないと、非常に高額な制裁金を課される可能性あり。
+
+## Crawl 先の負荷に関する注意
+自身の Crawler が Web server の処理能力を多く占めると他者が Web site を閲覧できなくなってしまう。商用 Site の場合、営業妨害となる可能性もあるので
+crawl 先に負荷をかけ過ぎないように配慮する。  
+※ BAN されてしまうと継続的な Data 収集も困難になる。
+
+- 適切な crawl 間隔を空ける
+- robot.txt に従う
+- 連絡先を明示する
+- 適切な Error 処理を行なう
+
+などを守る。
+
+### 同時接続数と crawl 間隔
+#### 同時接続数
+Crawler の同時接続数は６よりも減らす。基本的には単一接続にするべき。
+
+#### crawl 間隔
+- 慣例として１秒以上の wait を入れる。
+- robot.txt に Crawl-delay が存在する場合は、その秒数の間隔を空けて Request する
+
+#### RSS や XML site map
+HTML を取得する以外の手段が存在する場合は、なるべくその手段を用いる。
+- HTML に比べて Server の負荷が少ない。
+- Download する File size も小さい。
+
+#### Cache の活用
+一度 crawl した page は Cache し、一定の時間内は同じ page を crawl しないようにすることで負荷を軽減可能。
+
+### robot.txt
+| Directive   | 説明                                |
+|-------------|-----------------------------------|
+| User-agent  | 以降の Directive の対象となる Crawler を表す。 |
+| Disallow    | crawl を禁止する pass を表す。             |
+| Allow       | crawl を許可する pass を表す。             |
+| Sitemap     | XML site map の URL を表す            |
+| Crawl-delay | crawl 間隔を表す                       |
+
+### robot meta tag
+```html
+<meta name="robots" content="noindex">
+```
+
+| content   | 説明                                    |
+|-----------|---------------------------------------|
+| nofollow  | この page 内の link をたどることを許可しない          |
+| noarchive | この page を arcive として保存することを許可しない      |
+| noindex   | この page を検索 Engine に index することを許可しない |
+
+### Site map
+XML site map は、Web site の管理者が Crawler に対して crawl して欲しい URL の List を提示するための XML file
+参照すると効率的。
+
+### 連絡先の明示
+連絡先を明示する手段として Crawler が送信する HTTP request の User-Agent Header に連絡先の URL や Mail address を書く方法がある。
+
+### Status code と Error 処理
+余計な負荷をかけない行儀の良い Crawler を作るためには Error 処理も大切。
+Web server が Access 過多という response を返しているのに何度も繰り返し request を送るといつまで経っても access 過多の状態が解消されない。
+
+#### Error の種類
+##### Network level の Error
+DNS 解決の失敗や通信の timeout など、Server と正常に通信できない場合に発生。
+
+##### HTTP level の Error
+Web server は HTTP response の Status code で request の結果をかえす。
+- 4xx: Client Error
+- 5xx: Server Error
+
+| Status code               | 説明                                                   |
+|---------------------------|------------------------------------------------------|
+| 100 Continue              | request が継続している。                                     |
+| 200 OK                    | request は成功した。                                       |
+| 301 Moved Permanently     | request した Resource は、恒久的に移動した。                      |
+| 302 Found                 | request した Resource は一時的に移動した。                       |
+| 304 Not Modified          | request した Resource は更新されていない。                       |
+| 400 Bad Request           | Client の request に問題があるため処理できない。                     |
+| 401 Unauthorized          | 認証されていないため処理できない。                                    |
+| 403 Forbidden             | request は許可されていない。                                   |
+| 404 Not Found             | request した Resource は存在しない。                          |
+| 408 Request Timeout       | 一定時間内に request の送信を完了しなかった。                          |
+| 500 Internal Server Error | Server 内部で予期せぬ Error が発生した。                          |
+| 502 Bad Gateway           | Gateway server が背後の Server から Error を受け取った。          |
+| 503 Service Unavailable   | Server は一時的に request を処理できない。                        |
+| 504 Gateway Timeout       | Gateway server あら背後の Server への request が timeout した。 |
+
+### HTTP 通信における Error 処理
+Error が発生した時の対処法
+- 時間をおいて Retry
+- その page を諦める
+
+#### 時間をおいて Retry
+１時的な Error と考えられる場合は Retry。  
+Retry が増えるたびに指数関数的に Retry間隔を増やすと Server の負荷を軽減できる。  
+
+###### １自適な Error と考えられるもの
+- Network level の Errorは、設定が間違っていなければ
+- HTTP error のうち Status code が、408, 500, 502, 503, 504 のもの
+
+#### Crawler 自体を停止する Case
+単一 Page だけではなく同じ Site の 別 Page でも同じ Error が継続的に発生する場合。

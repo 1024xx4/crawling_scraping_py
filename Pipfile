@@ -12,6 +12,7 @@ pyquery = "*"
 feedparser = "*"
 psycopg2 = "*"
 pymongo = "*"
+tenacity = "*"
 
 [dev-packages]
 
