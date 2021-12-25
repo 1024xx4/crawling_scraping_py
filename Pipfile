@@ -13,6 +13,7 @@ feedparser = "*"
 psycopg2 = "*"
 pymongo = "*"
 tenacity = "*"
+cachecontrol = {extras = ["filecache"], version = "*"}
 
 [dev-packages]
 
