@@ -763,3 +763,59 @@ HTTP Server は、Response に下記表のような Cache に関する Header �
 Status code で空の Response body を返す。Client は 304 が返ってきた場合は cache された Response を使用する。
 - Server に毎回 request は送るが、Response body の処理を省略できる分、負荷が軽減できる。
 
+## Crawl 先の変化を検知する
+Crawler を運用していく上では、変化への対応が必要不可欠になる。  
+Web site の構造が変化し、Data を取得できなくなってしまうことがしばしば起こる。
+
+- CSS Selector や XPath で取得しようとした要素が存在しなくなる。  
+    <small>Error になるので気づきやすくはある</small>
+- 要素は変わらず存在するものの、意図したのとは違う値が得られる。  
+    <small>気づきにくく意図しない Data を収集し続ける可能性がある</small>
+
+###### 対策
+取得した値（Data）が想定どおりか検証（Validation）するのが有効
+
+### 正規表現で Validation
+気軽に値を Validation できる。
+
+### Library を利用した Validation
+取得する値の種類が増加し、値の種類毎に Validation の関数をつくるのが非効率になってきた時は Library を活用するのが有効。
+
+### JSON Schema で Validation
+JSON の構造を記述する言語を使って Validation を行なる Library
+
+dict を利用して JSON 構造で 色々な種類の Validation の Rule を定義し validate()関数で Validation する。
+###### 特徴
+- dict や list などの JSON で表現可能な型しか Validation ができない。
+- 様々な Program 言語に実装がある汎用的な Schema 言語なので、学んだ知識が Python 以外の言語で役立つ。
+
+### Validation 後の処理
+Validation をおこない変化を検知できたら Mail などで通知し、Crawler を終了する。  
+Crawler が再実行を考慮して作られていれば、途中から再開しても時間の Loss は最小限で済む。
+
+#### Topic
+明確に起きたと判断できたときだけ通知さするだけでは問題に気がつけない場合がある。
+
+- crawl をしていた Page が 404 Not Found になった。
+
+404 を単に無視する設計にしていると、１page も crawl することなく Crawler は正常終了する。
+
+明確に Error にならない状況を検出するには、ある程度、勘が必要になる。
+
+- Retry の発生回数や無視した Error の数が一定の数や割合を超えた場合に通知する
+
+など。通知には適切な粒度で通知することが大切。
+
+###### お勧めしない方法
+- Request 数
+- Retry の発生回数
+- 無視した Error の数
+
+など Crawler の実行結果を毎回通知して人間が確認する方法。
+
+失敗したかどうかに関わらず通知がくると、人は通知を無視するようなる。
+
+
+
+
+
