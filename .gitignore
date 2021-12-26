@@ -136,3 +136,6 @@ use_wget/
 
 # 環境変数
 .env
+
+# Cache の保存先
+.webcache/

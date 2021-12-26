@@ -12,6 +12,9 @@ pyquery = "*"
 feedparser = "*"
 psycopg2 = "*"
 pymongo = "*"
+tenacity = "*"
+cachecontrol = {extras = ["filecache"], version = "*"}
+jsonschema = "*"
 
 [dev-packages]
 
