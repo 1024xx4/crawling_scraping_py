@@ -139,3 +139,7 @@ use_wget/
 
 # Cache の保存先
 .webcache/
+
+# Data set
+AA/
+jawiki*
