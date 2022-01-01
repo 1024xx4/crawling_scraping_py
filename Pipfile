@@ -15,6 +15,7 @@ pymongo = "*"
 tenacity = "*"
 cachecontrol = {extras = ["filecache"], version = "*"}
 jsonschema = "*"
+mecab-python3 = "==0.7"
 
 [dev-packages]
 
