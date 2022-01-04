@@ -17,6 +17,7 @@ cachecontrol = {extras = ["filecache"], version = "*"}
 jsonschema = "*"
 mecab-python3 = "==0.7"
 requests-oauthlib = "*"
+tweepy = "*"
 
 [dev-packages]
 
