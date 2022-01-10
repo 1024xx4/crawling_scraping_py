@@ -15,7 +15,7 @@ def main():
     Main の処理
     :return:
     """
-    mongo_client = MongoClient('localhost27017')  # MongoDB の Client object を作成する。
+    mongo_client = MongoClient('localhost',27017)  # MongoDB の Client object を作成する。
     collection = mongo_client.youtube.videos  # Youtube の Database の videos collection を取得する。
 
     # 動画を検索し、Page 単位で Item の List を保存する。
@@ -89,7 +89,7 @@ def show_top_videos(collection: Collection):
     :param collection: Collection
     """
     for item in collection.find().sort('statistics.viewCount', DESCENDING).limit(5):
-        print(items['statistics']['viewCount'], item['snippet']['title'])
+        print(item['statistics']['viewCount'], item['snippet']['title'])
 
 
 if __name__ == '__main__':
