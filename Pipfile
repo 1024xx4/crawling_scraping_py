@@ -19,6 +19,7 @@ mecab-python3 = "==0.7"
 requests-oauthlib = "*"
 tweepy = "==3.7.0"
 google-api-python-client = "==1.7.4"
+pandas = "*"
 
 [dev-packages]
 
