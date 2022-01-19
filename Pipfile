@@ -21,6 +21,7 @@ tweepy = "==3.7.0"
 google-api-python-client = "==1.7.4"
 pandas = "*"
 xlrd = "*"
+jupyter = "*"
 
 [dev-packages]
 
