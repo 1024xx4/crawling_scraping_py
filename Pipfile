@@ -24,6 +24,8 @@ xlrd = "*"
 jupyter = "*"
 openpyxl = "*"
 matplotlib = "*"
+"pdfminer.six" = "*"
+chardet = "*"
 
 [dev-packages]
 
