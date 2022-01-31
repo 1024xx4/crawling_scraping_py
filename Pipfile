@@ -26,6 +26,7 @@ openpyxl = "*"
 matplotlib = "*"
 "pdfminer.six" = "*"
 chardet = "*"
+sparqlwrapper = "*"
 
 [dev-packages]
 

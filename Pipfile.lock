@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "eb94158605fc458a68879b561b7fc4c04bfa9351f7340d0ef624c9c2261cd5c3"
+            "sha256": "e7206d32037d67cd4bd71b1118e33a8626537baf2a175f97f9fa7466aba0ed7b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -415,6 +415,13 @@
                 "sha256:d258f582f915c62ea91023299603be095de19afb5ee271698f88327b9fe9bf43"
             ],
             "version": "==7.6.5"
+        },
+        "isodate": {
+            "hashes": [
+                "sha256:0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96",
+                "sha256:48c5881de7e8b0a0d648cb024c8062dc84e7b840ed81e864c7614fd3c127bde9"
+            ],
+            "version": "==0.6.1"
         },
         "jedi": {
             "hashes": [
@@ -1330,6 +1337,14 @@
             "markers": "python_version >= '3.6'",
             "version": "==2.0.0"
         },
+        "rdflib": {
+            "hashes": [
+                "sha256:8dbfa0af2990b98471dacbc936d6494c997ede92fd8ed693fb84ee700ef6f754",
+                "sha256:fc81cef513cd552d471f2926141396b633207109d0154c8e77926222c70367fe"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==6.1.1"
+        },
         "requests": {
             "hashes": [
                 "sha256:68d7c56fd5a8999887728ef304a6d12edc7be74f1cfa47714fc8b414525c9a61",
@@ -1382,6 +1397,17 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==2.3.1"
+        },
+        "sparqlwrapper": {
+            "hashes": [
+                "sha256:17ec44b08b8ae2888c801066249f74fe328eec25d90203ce7eadaf82e64484c7",
+                "sha256:357ee8a27bc910ea13d77836dbddd0b914991495b8cc1bf70676578155e962a8",
+                "sha256:8cf6c21126ed76edc85c5c232fd6f77b9f61f8ad1db90a7147cdde2104aff145",
+                "sha256:c7f9c9d8ebb13428771bc3b6dee54197422507dcc3dea34e30d5dcfc53478dec",
+                "sha256:d6a66b5b8cda141660e07aeb00472db077a98d22cb588c973209c7336850fb3c"
+            ],
+            "index": "pypi",
+            "version": "==1.8.5"
         },
         "stack-data": {
             "hashes": [
