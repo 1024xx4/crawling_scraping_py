@@ -27,6 +27,7 @@ matplotlib = "*"
 "pdfminer.six" = "*"
 chardet = "*"
 sparqlwrapper = "*"
+mechanicalsoup = "*"
 
 [dev-packages]
 
