@@ -28,6 +28,7 @@ matplotlib = "*"
 chardet = "*"
 sparqlwrapper = "*"
 mechanicalsoup = "*"
+selenium = "*"
 
 [dev-packages]
 
