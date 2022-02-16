@@ -29,6 +29,7 @@ chardet = "*"
 sparqlwrapper = "*"
 mechanicalsoup = "*"
 selenium = "*"
+pyppeteer = "*"
 
 [dev-packages]
 
