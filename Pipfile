@@ -28,6 +28,9 @@ matplotlib = "*"
 chardet = "*"
 sparqlwrapper = "*"
 mechanicalsoup = "*"
+selenium = "*"
+pyppeteer = "*"
+google-cloud-bigquery = "*"
 
 [dev-packages]
 

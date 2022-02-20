@@ -143,3 +143,6 @@ use_wget/
 # Data set
 AA/
 jawiki*
+
+credentials.json
+sample_codes/
