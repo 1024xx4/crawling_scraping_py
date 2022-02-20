@@ -1,7 +1,7 @@
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
-with open('../dp.html') as f:
+with open('../5_practice_and_data_utilization/dp.html') as f:
     soup = BeautifulSoup(f, 'html.parser')
 
 for a in soup.select('#listBook > li > a[itemprop="url"]'):
