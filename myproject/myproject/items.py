@@ -6,7 +6,10 @@
 import scrapy
 
 
-class MyprojectItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class Headline(scrapy.Item):
+    """
+    News の HeadLine を表す Item.
+    """
+
+    title = scrapy.Field()
+    body = scrapy.Field()
