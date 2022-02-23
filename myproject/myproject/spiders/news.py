@@ -8,10 +8,16 @@ class NewsSpider(scrapy.Spider):
 
     def parse(self, response):
         """
-        Topics 一覧から個々の Topics への Link を抜き出してたどる
+    Topics 一覧から個々の Topics への Link を抜き出してたどる
         """
         for url in response.css('ul.newsFeed_list a::attr("href")').re(r'/pickup/\d+$'):
             yield response.follow(url, self.parse_topics)
 
     def parse_topics(self, response):
-        pass
+        """
+        Topics の Page から Title と本文を抜き出す。
+        """
+        item = Headline()
+        item['title'] = response.css('.sc-dLxkki::text').get()  # Title
+        item['body'] = response.css('.highLightSearchTarget').xpath('string()').get()  # 本文
+        yield item  # Item を yield して、Data を抽出する。
