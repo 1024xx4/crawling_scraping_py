@@ -3,7 +3,7 @@ from html import unescape
 from urllib.parse import urljoin
 
 # dp.html file の中身を変数 html に格納する。
-with open('../dp.html') as f:
+with open('../5_practice_and_data_utilization/dp.html') as f:
     html = f.read()
 
 # re.findall() を使用して、書籍１冊に相当する部分の HTML を取得する。

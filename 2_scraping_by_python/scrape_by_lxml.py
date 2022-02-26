@@ -1,6 +1,6 @@
 import lxml.html
 
-tree = lxml.html.parse('../dp.html')
+tree = lxml.html.parse('../5_practice_and_data_utilization/dp.html')
 html = tree.getroot()
 html.make_links_absolute('https://gihyo.jp/')
 

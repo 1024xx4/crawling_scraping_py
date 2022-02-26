@@ -1,6 +1,6 @@
 from pyquery import PyQuery as pq
 
-d = pq(filename='../dp.html')
+d = pq(filename='../5_practice_and_data_utilization/dp.html')
 d.make_links_absolute('https://gihyo.jp/dp')
 
 for a in d('#listBook > li > a[itemprop="url"]'):

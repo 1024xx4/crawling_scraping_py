@@ -7,7 +7,7 @@ collection = db.books # `books` collection を取得 ※ 無ければ作成
 
 collection.delete_many({}) # Script の実行毎に Collection の Document をすべて削除。
 
-tree = lxml.html.parse('../dp.html') # HTML file の読み込み
+tree = lxml.html.parse('../5_practice_and_data_utilization/dp.html') # HTML file の読み込み
 html = tree.getroot() # HtmlElement object の取得
 html.make_links_absolute('https://gihyo.jp/') # 引数の URL を基準として、すべての a 要素の href 属性を絶対 URL に変換
 

@@ -31,6 +31,7 @@ mechanicalsoup = "*"
 selenium = "*"
 pyppeteer = "*"
 google-cloud-bigquery = "*"
+scrapy = "*"
 
 [dev-packages]
 
