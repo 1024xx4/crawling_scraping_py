@@ -1,5 +1,7 @@
 import scrapy
 
+from myproject.items import Headline  # Item の Headline class を import.
+
 
 class NewsSpider(scrapy.Spider):
     name = 'news'  # Spider の名前
