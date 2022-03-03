@@ -62,9 +62,10 @@ DOWNLOAD_DELAY = 1  # Page の DL間隔として平均１秒空ける。
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'myproject.pipelines.MyprojectPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    # 'myproject.pipelines.MyprojectPipeline': 300,
+    'myproject.pipelines.ValidationPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
