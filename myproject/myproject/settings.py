@@ -65,7 +65,13 @@ DOWNLOAD_DELAY = 1  # Page の DL間隔として平均１秒空ける。
 ITEM_PIPELINES = {
     # 'myproject.pipelines.MyprojectPipeline': 300,
     'myproject.pipelines.ValidationPipeline': 300,
+    # 'scrapy_mongodb.MongoDBPipeline': 800,
+    # 'myproject.pipelines.MongoPipeline': 800,
 }
+
+# MONGODB_URI = 'mongodb://localhost:27017'
+# MONGODB_DATABASE = 'scraping-book'
+# MONGODB_COLLECTION = 'items'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
