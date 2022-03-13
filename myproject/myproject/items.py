@@ -13,3 +13,16 @@ class Headline(scrapy.Item):
 
     title = scrapy.Field()
     body = scrapy.Field()
+
+
+class Restaurant(scrapy.item):
+    """
+    食べログの Restaurant情報。
+    """
+
+    name = scrapy.Field()
+    address = scrapy.Field()
+    latitude = scrapy.Field()
+    longitude = scrapy.Field()
+    station = scrapy.Field()
+    score = scrapy.Field()
