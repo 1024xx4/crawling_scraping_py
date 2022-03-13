@@ -10,7 +10,7 @@ class NewsSpider(scrapy.Spider):
 
     def parse(self, response):
         """
-    Topics 一覧から個々の Topics への Link を抜き出してたどる
+        Topics 一覧から個々の Topics への Link を抜き出してたどる
         """
         for url in response.css('ul.newsFeed_list a::attr("href")').re(r'/pickup/\d+$'):
             yield response.follow(url, self.parse_topics)
