@@ -15,7 +15,7 @@ class Headline(scrapy.Item):
     body = scrapy.Field()
 
 
-class Restaurant(scrapy.item):
+class Restaurant(scrapy.Item):
     """
     食べログの Restaurant情報。
     """
