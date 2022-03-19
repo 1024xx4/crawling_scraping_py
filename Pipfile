@@ -33,6 +33,7 @@ pyppeteer = "*"
 google-cloud-bigquery = "*"
 scrapy = "*"
 scrapy-mongodb = "*"
+readability-lxml = "*"
 
 [dev-packages]
 
