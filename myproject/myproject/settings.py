@@ -60,14 +60,18 @@ DOWNLOAD_DELAY = 1  # Page の DL間隔として平均１秒空ける。
 #    'scrapy.extensions.telnet.TelnetConsole': None,
 #}
 
+FILES_STORE = 'images'  # Download した画像File の保存場所。
+# 相対Path を指定すると Spider の実行時の Current directory に images directory が作成され、その中に保存される。
+
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#     # 'myproject.pipelines.MyprojectPipeline': 300,
-#     # 'myproject.pipelines.ValidationPipeline': 300,
-#     # 'scrapy_mongodb.MongoDBPipeline': 800,
-#     # 'myproject.pipelines.MongoPipeline': 800,
-# }
+ITEM_PIPELINES = {
+    # 'myproject.pipelines.MyprojectPipeline': 300,
+    # 'myproject.pipelines.ValidationPipeline': 300,
+    # 'scrapy_mongodb.MongoDBPipeline': 800,
+    # 'myproject.pipelines.MongoPipeline': 800,
+    'scrapy.pipelines.files.FilesPipeline': 1
+}
 
 # MONGODB_URI = 'mongodb://localhost:27017'
 # MONGODB_DATABASE = 'scraping-book'
