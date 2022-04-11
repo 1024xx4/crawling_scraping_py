@@ -148,3 +148,4 @@ credentials.json
 sample_codes/
 myproject/*.jl
 myproject/images
+images
